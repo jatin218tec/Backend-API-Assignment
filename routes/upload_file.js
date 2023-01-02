@@ -19,7 +19,7 @@ const upload = multer({
 router.post('/', verifyToken, upload.single('media'), async (req, res) => {
 
     const data = req.storageToken;
-    var filename = req.file.filename;
+    const filename = req.file.filename;
 
     fs.move(`./public/temp/${filename}`, `./public/${data}/${filename}`, (err) => {
         if (err) {
