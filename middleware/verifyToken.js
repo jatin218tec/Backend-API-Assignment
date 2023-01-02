@@ -2,20 +2,19 @@ const jwt = require('jsonwebtoken');
 
 const secKey = process.env.JWT_SECRET;
 
-const verifyToken = (req, res, next)=>{
-    
-    // Getting storage token from jwt token
-    const token = req.header('auth-token');
+const verifyToken = (req, res, next) => {
 
-    if (!token){
-        res.status(401).send({error: 'token invalid'})
-    }
     try {
-        const data = jwt.verify(token, JWT_SECRET);
-        req.user = data.user;
+        // Getting storage token from jwt token
+        const cookie = req.headers.cookie;
+        // console.log(cookie);
+        const data = jwt.verify(cookie, secKey);
+        req.storageToken = data;
         next();
-        
     } catch (error) {
-        return res.status(401).send({error: 'Please authenticate using a valid token'}) 
+        return res.status(401).send({ error });
     }
+
 }
+
+module.exports = verifyToken;

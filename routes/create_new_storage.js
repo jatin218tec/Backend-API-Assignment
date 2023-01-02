@@ -7,10 +7,10 @@ require('dotenv').config();
 
 const secKey = process.env.JWT_SECRET;
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
 
     const uniqueId = uuid.v4();
-
+    
     fs.mkdir(`./public/${uniqueId}`, function (err) {
         if (err) {
             res.json({
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
                 "message": err,
             });
         } else {
-            const storageToken = jwt.sign(100, secKey);
+            const storageToken = jwt.sign(uniqueId, secKey);
             res.cookie('storageToken', storageToken, { maxAge: 900000, httpOnly: true });
             res.json({
                 "status": "ok",
