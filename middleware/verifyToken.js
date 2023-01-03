@@ -6,8 +6,7 @@ const verifyToken = (req, res, next) => {
 
     try {
         // Getting storage token from jwt token
-        const cookie = req.headers.cookie;
-        // console.log(cookie);
+        const cookie = req.headers.cookie.split('=')[1];
         const data = jwt.verify(cookie, secKey);
         req.storageToken = data;
         next();
