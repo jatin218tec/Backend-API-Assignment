@@ -38,7 +38,7 @@ router.post('/', verifyToken, (req, res) => {
                 res.json({
                     "status": "ok",
                     "message": "Video Created Successfully",
-                    path: output
+                    path: `pulbic/${data}/video_${unique_file_name}.mp4`,
                 })
             })
     } catch (error) {
