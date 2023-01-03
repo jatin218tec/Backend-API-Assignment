@@ -27,8 +27,7 @@ router.post('/', verifyToken, (req, res) => {
                         "status": "bad",
                         "message": err
                     })
-                }
-                else {
+                } else {
                     fs.unlinkSync(list_file_path);
                     res.json({
                         "status": "ok",
