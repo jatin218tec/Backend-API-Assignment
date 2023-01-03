@@ -21,7 +21,7 @@ router.post('/', verifyToken, (req, res) => {
                     res.json({
                         "status": "ok",
                         "message": "Video and Audio Merged Successfully",
-                        "video_file_path": `./public/${data}/video_${unique_file_path}.mp4`
+                        "video_file_path": `public/${data}/video_${unique_file_path}.mp4`
                     })
 
                 }
